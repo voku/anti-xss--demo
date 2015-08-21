@@ -1,0 +1,76 @@
+
+// settings
+@import "../app_settings";
+
+.navbar-nav {
+  > {
+    li > a {
+      color: $color_white;
+      font-family: $font-family-special;
+      padding-bottom: 5px;
+      padding-top: 5px;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 7px;
+      transition: all 400ms;
+    }
+    .dropdown > a .caret {
+      border-top-color: darken($color_alto_approx, 5%);
+      border-bottom-color: darken($color_alto_approx, 5%);
+    }
+  }
+
+  li .open,
+  .active a,
+  li > a:hover {
+    border-bottom: 2px solid $color_persimmon_approx;
+    border-top: 2px solid $color_persimmon_approx;
+    background-color: $color_blackblue;
+    border-radius: 4px;
+  }
+
+  @media(min-width: 767px) {
+    &.nav-justified > li {
+      float: none;
+    }
+  }
+}
+
+.navbar-custom {
+  width: 100%;
+  position: static;
+  top: -32px;
+  margin: 0;
+  border-width: 0;
+  background-color: $color_blackblue_95;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  &.affix {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+  }
+
+  .dropdown-menu {
+    box-shadow: none;
+    right: 0;
+  }
+}
+
+.navbar-toggle {
+  outline: 0;
+}
+
+.navbar-inverse .navbar-nav > .active > a {
+  background-color: transparent;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+  }
+}
+
+.navbar-collapse.in {
+  overflow-y: visible;
+}

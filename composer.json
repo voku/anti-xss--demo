@@ -1,0 +1,31 @@
+{
+  "name": "voku/anti-xss-demo",
+  "type": "demo",
+  "homepage": "https://github.com/voku/anti-xss-demo",
+  "authors": [
+    {
+      "name": "Lars Moelleken",
+      "email": "lars@moelleken.org"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.2",
+    "slim/slim": "2.4.*",
+    "slim/extras": "2.0.*",
+    "slim/views": "0.1.*",
+    "twig/twig": "1.*",
+    "twig/extensions": "*",
+    "gabordemooij/redbean": "*",
+    "raveren/kint": "dev-master",
+    "voku/anti-xss": "1.*"
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "autoload": {
+    "psr-4": {
+      "MyApp\\": ["app/classes/"]
+    }
+  }
+
+}

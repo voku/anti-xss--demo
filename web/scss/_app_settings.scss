@@ -1,0 +1,36 @@
+
+// fonts
+$font-family-default: arial, sans-serif;
+$font-family-special: 'Open Sans', serif;
+
+// colors
+$color_white: white;
+$color_wild_sand_approx: #f5f5f5;
+$color_alto_approx: #ddd;
+$color_gray: gray;
+$color_gray_15: rgba($color_gray, 0.15);
+$color_black: black;
+$color_blackblue: #292c31;
+$color_blackblue_95: rgba($color_blackblue, 0.95);
+$color_blackblue_50: #292c31;
+$color_log_cabin_approx: #222;
+$color_blue_cool: #69ccff;
+$color_japanese_laurel_approx: #AEE868;
+$color_persimmon_approx: #c10000;
+$color_sunglow_approx: #ffcf44;
+
+// overwrites for bootstrap
+
+// Brand colors
+// -------------------------
+
+$brand-primary:         $color_blackblue;
+$brand-success:         $color_japanese_laurel_approx;
+$brand-warning:         $color_persimmon_approx;
+$brand-danger:          $color_persimmon_approx;
+$brand-info:            $color_blue_cool;
+
+// Navbar links
+// -------------------------
+
+$navbar-inverse-link-color: $color_white;

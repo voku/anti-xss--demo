@@ -1,0 +1,22 @@
+
+.btn:link {
+  border-radius: 3px;
+  background: $color_sunglow_approx linear-gradient(to bottom, $color_sunglow_approx, darken($color_sunglow_approx, 20%));
+  color: $color_blackblue;
+  transition: all 0.5s ease-in-out;
+}
+
+.btn,
+.btn-primary {
+  @extend .btn:link;
+  background: $color_sunglow_approx;
+
+  &:active,
+  &:focus,
+  &:visited,
+  &:hover {
+    box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.75);
+    background: darken($color_sunglow_approx, 5%);
+    color: $color_blackblue;
+  }
+}

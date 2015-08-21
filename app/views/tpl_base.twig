@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="de" itemscope itemtype="http://schema.org/WebPage"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="de" itemscope itemtype="http://schema.org/WebPage"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="de" itemscope itemtype="http://schema.org/WebPage"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" itemscope itemtype="http://schema.org/WebPage"> <!--<![endif]-->
+<head>
+{% block head %}
+
+  <title>Anti-XSS for PHP</title>
+
+  {% block head_meta %}
+    <meta charset="utf-8">
+    <meta http-equiv="cleartype" content="on" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="description" content="Protect you web-application against XSS-attacks!" />
+    <meta name="revisit-after" content="1 days" />
+    <meta name="topic" content="security" />
+    <meta name="twitter:title" content="Anti-XSS for PHP" />
+    <meta property="og:locale" content="en_EN" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Anti-XSS for PHP" />
+    <meta http-equiv="content-language" content="en_EN" />
+  {% endblock %}
+
+  {# CSS #}
+  {% block head_css %}
+    <link rel="stylesheet" href="/vendor/bower/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css-min/app.css" />
+  {% endblock %}
+
+  {% flush %}
+
+  {# JavaScript #}
+  {% block head_js %}
+  {% endblock %}
+
+  {% flush %}
+
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+{% endblock %}
+</head>
+<body id="page{{ page_id }}" class="{{ page_template }}">
+
+
+<!-- Wrap all page content here -->
+<div class="globalWrapper">
+
+  <header class="masthead">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 clearfix">
+          <h1>
+            <a href="/" title="Anti-XSS for PHP">Anti-XSS for PHP</a>
+          </h1>
+
+          <p class="lead">
+            { @hacker | "try to bypass this XSS filter" }
+          </p>
+
+          <h2>
+            <a class="masthead--link" href="https://github.com/voku/anti-xss/">github.com/voku/anti-xss</a>
+          </h2>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Fixed navbar -->
+  <div class="navbar navbar-custom navbar-inverse navbar-static-top affix-top main-navbar">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav nav-justified">
+          <li {% if page_template == 'tpl_index' %}class="active"{% endif %}><a class="js-animate" href="{% if page_template != 'tpl_index' %}/index.php{% endif %}#section1"><strong>Form</strong></a></li>
+          <li {% if page_template == 'tpl_concept' %}class="active"{% endif %}><a class="js-animate" href="{% if page_template != 'tpl_index' %}/index.php{% endif %}#section2">Results</a></li>
+          <li><a target="_blank" href="https://github.com/voku/anti-xss/">Github</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+    <!--/.container -->
+  </div>
+  <!--/.navbar -->
+
+  {% block content %}{% endblock %}
+
+</div>
+<!--/wrap-->
+
+<div class="footer">
+  <div class="container">
+    <p class="text-muted">BY <a target="_blank" href="http://moelleken.org/">LARS MOELLEKEN</a> WITH <span class="font-color-red">HATE</span> IN 2015</p>
+  </div>
+</div>
+
+<ul class="nav pull-right scroll-top">
+  <li><a href="./index.html" title="Scroll to top"><i class="glyphicon glyphicon-chevron-up"></i></a></li>
+</ul>
+
+{# JavaScript #}
+{% block footer_js %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="vendor/bower/jquery/dist/jquery.min.js"><\/script>')</script>
+
+  <script>
+    // Avoid `console` errors in browsers that lack a console.
+    (function() {
+      var method;
+      var noop = function () {};
+      var methods = [
+        'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+        'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+        'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+        'timeStamp', 'trace', 'warn'
+      ];
+      var length = methods.length;
+      var console = (window.console = window.console || {});
+
+      while (length--) {
+        method = methods[length];
+
+        // Only stub undefined methods.
+        if (!console[method]) {
+          console[method] = noop;
+        }
+      }
+    }());
+  </script>
+
+  <script src="/vendor/modernizr.custom.js"></script>
+
+  <!--[if lt IE 9]>
+    <script src="/vendor/bower/nwmatcher/src/nwmatcher.js"></script>
+    <script src="/vendor/bower/selectivizr/selectivizr.js"></script>
+  <![endif]-->
+
+  <script>
+    Modernizr.load(
+        {
+          test : Modernizr.mq('only all'),
+          nope : '/vendor/bower/respond/dest/respond.min.js'
+        }
+        ,
+        {
+          test: Modernizr.cssremunit,
+          nope : '/vendor/bower/rem-unit-polyfill/js/rem.min.js'
+        }
+    );
+  </script>
+
+  <!-- load web-fonts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Open Sans']
+      }
+    });
+  </script>
+
+  <script src="/js-min/plugins.js"></script>
+  <script src="/js-min/app.js"></script>
+
+  {#
+  <!-- only for example-images -->
+  <script src="/vendor/bower/bootstrap-sass/docs-assets/js/holder.js"></script>
+  #}
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "anti-xss",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "bootstrap-sass-official": "~3.3.5",
+    "normalize-scss": "3.*",
+    "font-awesome": "~4.3.0",
+    "bootstrap-sass": "3.*",
+    "jquery": "~1.11.3",
+    "jquery.easing": "~1.3.1",
+    "magnific-popup": "~1.0.0"
+  }
+}

@@ -1,0 +1,95 @@
+{% extends 'tpl_base.twig' %}
+
+{% block content %}
+  <span id="section1"></span>
+
+  <br /><br />
+
+  <form id="form-xss" class="form form-xss" method="post" action="/add#section1">
+    <div class="row">
+
+      <div class="col-sm-6">
+        <div class="row form-group">
+          <div class="col-xs-6">
+            <input type="text" class="form-control {{ data.error.author }}" name="xss[author]" id="js-contact-author" placeholder="author" required="" value="{{ data.post.author }}" />
+          </div>
+          <div class="col-xs-6">
+            <input type="text" class="form-control" name="xss[keywords]" id="js-contact-keywords" placeholder="keyword(s)" value="{{ data.post.keywords }}" />
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-xs-12">
+            <textarea class="form-control" name="xss[desc]" id="js-contact-desc" placeholder="description" >{{ data.post.desc }}</textarea>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-xs-12">
+            <textarea class="form-control {{ data.error.xss }}" name="xss[xss]" id="js-contact-xss" placeholder="XSS" required="">{{ data.post.xss }}</textarea>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-xs-12">
+            <button class="btn btn-default pull-right">send</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="pull-right">
+          <br />
+          If you need some inspiration for new attacks, take a look at the <a class="link--external" target="_blank" href="https://github.com/voku/anti-xss/tree/master/tests">PHPUnit tests</a>. I have already included test from e.g. "DOMPurify", "JS-XSS" and "LaravelSecurity". Here you can find some more XSS strings:
+          <br /><br />
+          <ul>
+            <li>
+              <a target="_blank" href="http://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/htmLawed_TESTCASE.txt">
+                www.bioinformatics.org
+              </a>
+            </li>
+            <li>
+              <a target="_blank" href="http://htmlpurifier.org/live/smoketests/xssAttacks.php">
+                htmlpurifier.org
+              </a>
+            </li>
+            <li>
+              <a target="_blank" href="http://hackingforsecurity.blogspot.de/2013/11/xss-cheat-sheet-huge-list.html">
+                hackingforsecurity.blogspot.de
+              </a>
+            </li>
+          </ul>
+          <br /><br />
+          PS: This demo, is also available at github.com and you can also create pull-requests. :)
+          <br />
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="col-sm-12">
+      {% if data.msg_error %}
+        <p class="error">{{ data.msg_error }}</p>
+      {% endif %}
+      {% if data.msg_success %}
+        <p class="success">{{ data.msg_success }}</p>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if data.xss %}
+    <div class="row">
+      <span id="section2"></span>
+
+      {% for xss in data.xss %}
+        <div class="col-sm-12">
+          <hr />
+          <p>result:<code>{{ xss.xss | raw }}</code></p>
+          <p>keyword(s): {{ xss.keywords }}</p>
+          <p>description: {{ xss.desc }}</p>
+          <p>by {{ xss.author }} | at {{ xss.modify_date }}</p>
+        </div>
+      {% endfor %}
+
+    </div>
+  {% endif %}
+{% endblock %}
