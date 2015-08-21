@@ -50,21 +50,10 @@ module.exports = function(grunt) {
       build: ["js-min/*", "css/*", "css-min/*"]
     },
 
-    /*
-     compass: {
-     dist: {
-     options: {
-     config: 'config.rb',
-     sourcemap: true
-     }
-     }
-     },
-     */
-
     sass: {
       dist: {
         options: {
-          includePaths: ['vendor/bower/normalize-scss', 'vendor/bower/bourbon/dist'],
+          includePaths: ['vendor/bower/normalize-scss', 'vendor/bower/bootstrap-sass/lib'],
           sourcemap: true
         },
         files: [{
@@ -121,23 +110,11 @@ module.exports = function(grunt) {
       }
     },
 
-    devperf: {
-      options: {
-        urls: [
-          '<%= pkg.url %>'
-        ],
-        numberOfRuns: 3,
-        timeout: 120,
-        openResults: true,
-        resultsFolder: './report/devperf'
-      }
-    },
-
     dalek: {
 
       options: {
         // invoke phantomjs, chrome & chrome canary ...
-        browser: ['phantomjs'],
+        browser: ['chrome'],
         // generate an html & an jUnit report
         reporter: ['html', 'junit']
       },

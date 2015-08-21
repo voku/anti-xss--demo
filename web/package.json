@@ -15,11 +15,8 @@
     "grunt-contrib-watch": "^0.6.*",
     "grunt-csswring": "^1.*.*",
     "grunt-dalek": "^0.2.*",
-    "grunt-devperf": "^0.2.12",
     "grunt-sass": "^1.*",
-    "grunt-pagespeed": "^0.3.*",
     "grunt-replace": "0.8.*",
-    "grunt-penthouse": "^0.2.*",
     "matchdep": "^0.3.*",
     "time-grunt": "^1.0.*"
   }

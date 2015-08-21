@@ -1,4 +1,3 @@
-
 // fonts
 $font-family-default: arial, sans-serif;
 $font-family-special: 'Open Sans', serif;
@@ -15,8 +14,8 @@ $color_blackblue_95: rgba($color_blackblue, 0.95);
 $color_blackblue_50: #292c31;
 $color_log_cabin_approx: #222;
 $color_blue_cool: #69ccff;
-$color_japanese_laurel_approx: #AEE868;
-$color_persimmon_approx: #c10000;
+$color_japanese_laurel_approx: #aee868;
+$color_persimmon_approx: #ffa500;
 $color_sunglow_approx: #ffcf44;
 
 // overwrites for bootstrap
@@ -24,11 +23,11 @@ $color_sunglow_approx: #ffcf44;
 // Brand colors
 // -------------------------
 
-$brand-primary:         $color_blackblue;
-$brand-success:         $color_japanese_laurel_approx;
-$brand-warning:         $color_persimmon_approx;
-$brand-danger:          $color_persimmon_approx;
-$brand-info:            $color_blue_cool;
+$brand-primary: $color_blackblue;
+$brand-success: $color_japanese_laurel_approx;
+$brand-warning: $color_persimmon_approx;
+$brand-danger: $color_persimmon_approx;
+$brand-info: $color_blue_cool;
 
 // Navbar links
 // -------------------------

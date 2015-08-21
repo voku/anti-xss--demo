@@ -25,6 +25,22 @@ h1, h2, h3, h4 {
   border-width: 0;
 }
 
+.break-word {
+  -moz-hyphens: auto;
+  -o-hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -hyphens: auto;
+  hyphenate-limit-chars: auto;
+  hyphenate-limit-lines: 2;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
 .font-color-white {
   color: $color_white;
 }
@@ -153,12 +169,12 @@ h1, h2, h3, h4 {
   }
 }
 
-.orr-info-box {
+.xss-info-box {
   p {
     color: $color_white;
   }
 
-  .orr-info-box--feature {
+  .xss-info-box--feature {
     .icon {
       position: absolute;
       left: -4px;
@@ -200,7 +216,7 @@ h1, h2, h3, h4 {
   }
 }
 
-.orr-headline {
+.xss-headline {
   padding: 20px;
   background-color: $color_blackblue_95;
 }
@@ -269,7 +285,7 @@ section {
   padding-top: 30px;
 }
 
-.orr-overview-stats {
+.xss-overview-stats {
   padding-top: 50px;
 
   .col-sm-12 > div {

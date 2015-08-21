@@ -36,9 +36,12 @@
 
       <div class="col-sm-6">
         <div class="pull-right">
-          <br />
-          If you need some inspiration for new attacks, take a look at the <a class="link--external" target="_blank" href="https://github.com/voku/anti-xss/tree/master/tests">PHPUnit tests</a>. I have already included test from e.g. "DOMPurify", "JS-XSS" and "LaravelSecurity". Here you can find some more XSS strings:
-          <br /><br />
+
+          <p>
+            If you need some inspiration for new attacks, take a look at the <a class="underline" target="_blank" href="https://github.com/voku/anti-xss/tree/master/tests">PHPUnit tests</a>. I have already included test from e.g. "<a target="_blank" href="https://github.com/cure53/DOMPurify">DOMPurify</a>", "<a target="_blank" href="https://github.com/leizongmin/js-xss/">JS-XSS</a>" and "<a target="_blank" href="https://github.com/GrahamCampbell/Laravel-Security">LaravelSecurity</a>". Here you can find some more XSS strings:
+            <br />
+          </p>
+
           <ul>
             <li>
               <a target="_blank" href="http://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/htmLawed_TESTCASE.txt">
@@ -56,9 +59,13 @@
               </a>
             </li>
           </ul>
-          <br /><br />
-          PS: This demo, is also available at github.com and you can also create pull-requests. :)
-          <br />
+
+          <p>
+            <br /><br />
+            PS: This demo, is also available at github.com and you can also create pull-requests, <a class="underline" target="_blank" href="https://github.com/voku/anti-xss--demo">here</a>.
+            <br />
+          </p>
+
         </div>
       </div>
 
@@ -83,7 +90,8 @@
       {% for xss in data.xss %}
         <div class="col-sm-12">
           <hr />
-          <p>result:<code>{{ xss.xss | raw }}</code></p>
+          <p>result:</p>
+          <code class="break-word">{{ xss.xss }}</code>
           <p>keyword(s): {{ xss.keywords }}</p>
           <p>description: {{ xss.desc }}</p>
           <p>by {{ xss.author }} | at {{ xss.modify_date }}</p>
