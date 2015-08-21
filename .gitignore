@@ -11,6 +11,9 @@
 #
 # Created by http://www.gitignore.io
 
+### SQLite ###
+app/storage/db/*.s3db
+
 ### NetBeans ###
 nbproject/private/
 nbbuild/

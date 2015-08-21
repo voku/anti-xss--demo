@@ -39,7 +39,7 @@ return array(
 
     'sqlite' => array(
       'driver'   => 'sqlite',
-      'database' => ROOT . '/app/storage/db/test.s3db',
+      'database' => ROOT . '/app/storage/db/xss.s3db',
       'prefix'   => '',
     ),
 
