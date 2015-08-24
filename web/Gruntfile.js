@@ -76,10 +76,9 @@ module.exports = function(grunt) {
           'vendor/bower/jquery/dist/jquery.js',
           'vendor/bower/jquery.easing/js/jquery.easing.js',
           'vendor/bower/magnific-popup/dist/jquery.magnific-popup.js',
-          'vendor/bower/bootstrap/dist/js/bootstrap.js',
-          'js/app.js'
+          'vendor/bower/bootstrap/dist/js/bootstrap.js'
         ],
-        dest: 'js/app.pkgd.js'
+        dest: 'js/plugins.js'
       }
     },
 

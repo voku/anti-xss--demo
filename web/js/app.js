@@ -27,15 +27,6 @@ $(document).ready(function () {
     $('body,html').animate({scrollTop: pos}, 700);
   });
 
-  // append the map
-  $('#map-canvas--js').append(
-    '<object data="http://www.openstreetmap.org/export/embed.html?bbox=6.84631,51.47322,6.85432,51.47813&layer=mapnik&marker=51.47569,6.85032" type="text/html" style="width: 100%; height: 100%;"></object>' +
-    '<br />' +
-    '<small>' +
-    '<a target="_blank" href="http://www.openstreetmap.org/?lat=51.475675&lon=6.850315&zoom=17&layers=B000FTFTT&mlat=51.47569&mlon=6.85032">Grö&szlig;ere Karte anzeigen</a>' +
-    '</small>'
-  );
-  
   // image-popup
   $('.without-caption').magnificPopup({
     type: 'image',
@@ -47,7 +38,7 @@ $(document).ready(function () {
     },
     zoom: {
       enabled: true,
-      duration: 300 // don't foget to change the duration also in CSS
+      duration: 300 // don't forget to change the duration also in CSS
     }
   });
 
