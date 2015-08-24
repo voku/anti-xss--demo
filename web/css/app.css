@@ -5370,13 +5370,23 @@ td.visible-print {
   td.hidden-print {
     display: none !important; } }
 
-html, body {
+html,
+body {
   height: 100%;
   font: normal 16px arial, sans-serif; }
 
-h1, h2, h3, h4 {
-  font-family: "Open Sans", serif;
-  vertical-align: middle; }
+h1,
+h2,
+h3,
+h4 {
+  font-family: arial, sans-serif;
+  vertical-align: middle;
+  /* web fonts activated */ }
+  html.wf-active h1,
+  html.wf-active h2,
+  html.wf-active h3,
+  html.wf-active h4 {
+    font-family: "Open Sans"; }
 
 .row {
   margin-left: 0;
@@ -5665,7 +5675,7 @@ section {
 
 .navbar-nav > li > a {
   color: white;
-  font-family: "Open Sans", serif;
+  font-family: arial, sans-serif;
   padding-bottom: 5px;
   padding-top: 5px;
   margin-left: 10px;
@@ -5674,7 +5684,10 @@ section {
   -webkit-transition: all 400ms;
      -moz-transition: all 400ms;
        -o-transition: all 400ms;
-          transition: all 400ms; }
+          transition: all 400ms;
+  /* web fonts activated */ }
+  html.wf-active .navbar-nav > li > a {
+    font-family: "Open Sans"; }
 
 .navbar-nav > .dropdown > a .caret {
   border-top-color: #d0d0d0;

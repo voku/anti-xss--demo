@@ -27,6 +27,10 @@
     <meta http-equiv="content-language" content="en_EN" />
   {% endblock %}
 
+  {# pre-connect #}
+  <link rel="preconnect" href="//fonts.googleapis.com">
+  <link rel="preconnect" href="//ajax.googleapis.com">
+
   {# CSS #}
   {% block head_css %}
     <link rel="stylesheet" href="/vendor/bower/font-awesome/css/font-awesome.min.css" />
@@ -162,13 +166,20 @@
   </script>
 
   <!-- load web-fonts -->
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
   <script>
-    WebFont.load({
-      google: {
-        families: ['Open Sans']
-      }
-    });
+    //noinspection JSUnusedGlobalSymbols,JSUndeclaredVariable,JSUndeclaredVariable
+    WebFontConfig = {
+      google:  {
+        families: ['Open Sans:300,400']
+      },
+      timeout: 2000
+    };
+
+    (function(d) {
+      var wf = d.createElement('script'), s = d.scripts[0];
+      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+      s.parentNode.insertBefore(wf, s);
+    })(document);
   </script>
 
   <script src="/js-min/plugins.js"></script>

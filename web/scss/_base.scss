@@ -1,15 +1,23 @@
-
 // settings
 @import "app_settings";
 
-html, body {
+html,
+body {
   height: 100%;
   font: normal 16px $font-family-default;
 }
 
-h1, h2, h3, h4 {
-  font-family: $font-family-special;
+h1,
+h2,
+h3,
+h4 {
+  font-family: $font-family-default;
   vertical-align: middle;
+
+  /* web fonts activated */
+  html.wf-active & {
+    font-family: $font-family-special;
+  }
 }
 
 .row {

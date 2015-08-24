@@ -6,18 +6,25 @@
   > {
     li > a {
       color: $color_white;
-      font-family: $font-family-special;
+      font-family: $font-family-default;
       padding-bottom: 5px;
       padding-top: 5px;
       margin-left: 10px;
       margin-right: 10px;
       margin-top: 7px;
       transition: all 400ms;
+
+      /* web fonts activated */
+      html.wf-active & {
+        font-family: $font-family-special;
+      }
     }
+
     .dropdown > a .caret {
       border-top-color: darken($color_alto_approx, 5%);
       border-bottom-color: darken($color_alto_approx, 5%);
     }
+
   }
 
   li .open,
