@@ -29,15 +29,24 @@ class Model_Xss extends Model_Base
    * get all
    *
    * @param bool $isBean
+   * @param null|int $limit
    *
    * @return array
    */
-  public function getAll($isBean = false)
+  public function getAll($isBean = false, $limit = null)
   {
-    if ($isBean !== false) {
-      $return = R::findAll('xss');
+    if (null !== $limit && is_int($limit)) {
+      $limitSql = ' LIMIT ' . (int)$limit . ' ';
     } else {
-      $return = R::getAll('SELECT * FROM xss');
+      $limitSql = '';
+    }
+
+    $orderSql = ' ORDER BY id ASC ';
+
+    if ($isBean !== false) {
+      $return = R::findAll('xss', $orderSql . $limitSql);
+    } else {
+      $return = R::getAll('SELECT * FROM xss ' . $orderSql . $limitSql);
     }
 
     return $return;

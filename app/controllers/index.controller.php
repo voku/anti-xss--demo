@@ -6,7 +6,7 @@ $app->get(
     '/', function () use ($app) {
 
   $xss = new Model_Xss();
-  $data['xss'] = $xss->getAll();
+  $data['xss'] = $xss->getAll(false, 100);
 
   if ($_GET['msg_success'] == 1) {
     $data['msg_success'] = 'Your XSS-String was filtered, take a look ...';

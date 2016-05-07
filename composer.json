@@ -14,9 +14,9 @@
     "slim/extras": "2.0.*",
     "slim/views": "0.1.*",
     "twig/twig": "1.*",
-    "twig/extensions": "*",
-    "gabordemooij/redbean": "*",
-    "raveren/kint": "dev-master",
+    "twig/extensions": "1.*",
+    "gabordemooij/redbean": "4.*",
+    "voku/kint": "2.*",
     "voku/anti-xss": "1.*"
   },
   "config": {
