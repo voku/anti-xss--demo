@@ -90,8 +90,8 @@
       {% for xss in data.xss %}
         <div class="col-sm-12">
           <hr />
+          <p>result:</p>
           <code class="break-word">{{ xss.xss }}</code>
-          <p>{{ xss.xss | raw }}</p>
           <p>keyword(s): {{ xss.keywords }}</p>
           <p>description: {{ xss.desc }}</p>
           <p>by {{ xss.author }} | at {{ xss.modify_date }}</p>
