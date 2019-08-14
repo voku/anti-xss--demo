@@ -11,20 +11,20 @@
       <div class="col-sm-6">
         <div class="row form-group">
           <div class="col-xs-6">
-            <input type="text" class="form-control {{ data.error.author }}" name="xss[author]" id="js-contact-author" placeholder="author" required="" value="{{ data.post.author }}" />
+            <input type="text" class="form-control {{ data.error.author }}" name="xss[author]" id="js-contact-author" placeholder="author" required value="{% xss_clean %}{{ data.post.author }}{% end_xss_clean %}" />
           </div>
           <div class="col-xs-6">
-            <input type="text" class="form-control" name="xss[keywords]" id="js-contact-keywords" placeholder="keyword(s)" value="{{ data.post.keywords }}" />
+            <input type="text" class="form-control" name="xss[keywords]" id="js-contact-keywords" placeholder="keyword(s)" value="{% xss_clean %}{{ data.post.keywords }}{% end_xss_clean %}" />
           </div>
         </div>
         <div class="row form-group">
           <div class="col-xs-12">
-            <textarea class="form-control" name="xss[desc]" id="js-contact-desc" placeholder="description" >{{ data.post.desc }}</textarea>
+            <textarea class="form-control" name="xss[desc]" id="js-contact-desc" placeholder="description" >{% xss_clean %}{{ data.post.desc }}{% end_xss_clean %}</textarea>
           </div>
         </div>
         <div class="row form-group">
           <div class="col-xs-12">
-            <textarea class="form-control {{ data.error.xss }}" name="xss[xss]" id="js-contact-xss" placeholder="XSS" required="">{{ data.post.xss }}</textarea>
+            <textarea class="form-control {{ data.error.xss }}" name="xss[xss]" id="js-contact-xss" placeholder="XSS" required>{% xss_clean %}{{ data.post.xss }}{% end_xss_clean %}</textarea>
           </div>
         </div>
         <div class="row form-group">
@@ -90,11 +90,13 @@
       {% for xss in data.xss %}
         <div class="col-sm-12">
           <hr />
-          <p>result:</p>
-          <code class="break-word">{{ xss.xss }}</code>
-          <p>keyword(s): {{ xss.keywords }}</p>
-          <p>description: {{ xss.desc }}</p>
-          <p>by {{ xss.author }} | at {{ xss.date }}</p>
+          <p>result with twig: &#x7B;&#x25;&#x20;&#x78;&#x73;&#x73;&#x5F;&#x63;&#x6C;&#x65;&#x61;&#x6E;&#x20;&#x25;&#x7D;&#x7B;&#x7B;&#x20;&#x78;&#x73;&#x73;&#x2E;&#x78;&#x73;&#x73;&#x20;&#x7C;&#x20;&#x72;&#x61;&#x77;&#x20;&#x7D;&#x7D;&#x7B;&#x25;&#x20;&#x65;&#x6E;&#x64;&#x5F;&#x78;&#x73;&#x73;&#x5F;&#x63;&#x6C;&#x65;&#x61;&#x6E;&#x20;&#x25;&#x7D;:</p>
+          <code class="break-word">{% xss_clean %}{{ xss.xss | raw }}{% end_xss_clean %}</code>
+          <p>result with twig: &#x7B;&#x7B;&#x20;&#x78;&#x73;&#x73;&#x2E;&#x78;&#x73;&#x73;&#x20;&#x7C;&#x20;&#x65;&#x73;&#x63;&#x61;&#x70;&#x65;&#x20;&#x7D;&#x7D;:</p>
+          <code class="break-word">{{ xss.xss | escape }}</code>
+          <p>keyword(s): {% xss_clean %}{{ xss.keywords }}{% end_xss_clean %}</p>
+          <p>description: {% xss_clean %}{{ xss.desc }}{% end_xss_clean %}</p>
+          <p>by {% xss_clean %}{{ xss.author }}{% end_xss_clean %} | at {{ xss.date }}</p>
         </div>
       {% endfor %}
 

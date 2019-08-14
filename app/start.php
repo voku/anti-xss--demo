@@ -3,9 +3,9 @@
 use Slim\Slim;
 use Slim\Views\TwigExtension;
 use voku\helper\AntiXSS;
+use voku\twig\AntiXssExtension;
 
 // for native PHP session
-\session_cache_limiter(false);
 \session_start();
 
 /*
@@ -36,11 +36,12 @@ function clearXss(array &$array, AntiXSS $antiXSS)
 }
 
 $antiXss = new AntiXSS();
-clearXss($_POST, $antiXss);
-clearXss($_GET, $antiXss);
-clearXss($_REQUEST, $antiXss);
+//clearXss($_POST, $antiXss); // we use "AntiXSS for Twig" in the template, so we can save the xss thingy in the database
+//clearXss($_GET, $antiXss); // ''
+//clearXss($_REQUEST, $antiXss); // ''
 clearXss($_SERVER, $antiXss);
 clearXss($_SESSION, $antiXss);
+clearXss($_COOKIE, $antiXss);
 unset($antiXss);
 
 /*
@@ -83,18 +84,9 @@ $app->view()->appendData(
 );
 
 // include all controllers
-foreach (\glob(ROOT . '/app/controllers/*.php') as $router) {
+foreach (\glob(ROOT . '/app/controllers/*.php', GLOB_NOSORT) as $router) {
     include $router;
 }
-
-// disable fluid mode in production environment
-$app->configureMode(
-    SLIM_MODE_PRO,
-    static function () use ($app) {
-        // note, transactions will be auto-committed in fluid mode
-        DatabseConnection::freeze(true);
-    }
-);
 
 /*
 |--------------------------------------------------------------------------
@@ -108,15 +100,16 @@ $app->configureMode(
 
 $view = $app->view();
 $view->parserOptions = [
-    'debug'       => true,
-    'cache'       => false,
-    //'cache' => ROOT . '/app/storage/cache/twig',
-    'auto_reload' => true,
-    //'strict_variables' => true
+    'debug'            => false,
+    'cache'            => ROOT . '/app/storage/cache/twig',
+    'auto_reload'      => true,
+    'strict_variables' => false,
 ];
 
+$antiXss = new AntiXSS();
 $view->parserExtensions = [
     new TwigExtension(),
+    new AntiXssExtension($antiXss),
 ];
 
 /*

@@ -1,4 +1,4 @@
-Anti-XSS (Slim + Twig + ActiveRecord + Anti-XSS)
+Anti-XSS (Slim + Twig + AntiXSS for Twig)
 ======================================================
 
 This is a Demo for the Anti-XSS package. 

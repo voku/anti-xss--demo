@@ -14,25 +14,3 @@
 
 require ROOT . '/vendor/autoload.php';
 
-/*
-|--------------------------------------------------------------------------
-| Register The AntiXssSlim Auto Loader
-|--------------------------------------------------------------------------
-|
-| We register an auto-loader "behind" the Composer loader that can load
-| model classes on the fly.
-|
- */
-
-// auto-loader to load classes in /app/models/
-\spl_autoload_register(
-    function ($class) {
-        if (\strpos($class, 'Model_') !== 0) {
-            return;
-        }
-
-        if (\is_file($file = ROOT . '/app/models/' . $class . '.php')) {
-            require $file;
-        }
-    }
-);

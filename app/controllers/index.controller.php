@@ -7,7 +7,7 @@ use app\models\Xss;
 $app->get(
     '/',
     static function () use ($app) {
-        $data['xss'] = (new Xss())->limit(0, 100)->fetchAll();
+        $data['xss'] = (new Xss())->limit(0, 100)->orderBy('id DESC')->fetchAll();
 
         if ($_GET['msg_success'] == 1) {
             $data['msg_success'] = 'Your XSS-String was filtered, take a look ...';
