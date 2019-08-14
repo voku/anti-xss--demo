@@ -26,6 +26,11 @@ $app->post(
             $data['msg_error'] = 'Please add a author.';
         }
 
+        if ((int)$data['post']['captcha'] !== 4) {
+            $data['error']['captcha'] = ' has-error ';
+            $data['msg_error'] = 'Please add the correct answer.';
+        }
+
         if ($data['msg_error'] === false) {
 
             $newXss->xss = $data['post']['xss'];
