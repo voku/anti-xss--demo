@@ -16,10 +16,9 @@
     "slim/views": "0.1.*",
     "twig/twig": "1.*",
     "twig/extensions": "1.*",
-    "kint-php/kint": "3.*",
     "voku/anti-xss": "4.*",
-    "voku/simple-active-record": "^1.2",
-    "voku/anti-xss-twig": "^3.0"
+    "voku/simple-active-record": "1.*",
+    "voku/anti-xss-twig": "3.*"
   },
   "config": {
     "preferred-install": "dist"
