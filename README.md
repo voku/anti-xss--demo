@@ -42,6 +42,22 @@ Note that in order to make the *.htaccess* effective, your main apache config fi
 		AllowOverride All
 	</Directory>
 
+Database Example:
+```
+CREATE TABLE `xss` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`xss` TEXT NOT NULL,
+	`desc` TEXT NOT NULL,
+	`keywords` VARCHAR(50) NULL DEFAULT '',
+	`author` VARCHAR(50) NULL DEFAULT '',
+	`date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+```
 
 ##Structure
 
