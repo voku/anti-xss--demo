@@ -1,6 +1,7 @@
 {
   "name": "voku/anti-xss-demo",
-  "type": "demo",
+  "license": "MIT",
+  "type": "project",
   "homepage": "https://github.com/voku/anti-xss-demo",
   "authors": [
     {
@@ -9,22 +10,22 @@
     }
   ],
   "require": {
-    "php": ">=5.3.2",
+    "php": ">=7.0",
     "slim/slim": "2.4.*",
     "slim/extras": "2.0.*",
     "slim/views": "0.1.*",
     "twig/twig": "1.*",
     "twig/extensions": "1.*",
-    "gabordemooij/redbean": "4.*",
-    "voku/kint": "2.*",
-    "voku/anti-xss": "2.*"
+    "kint-php/kint": "3.*",
+    "voku/anti-xss": "4.*",
+    "voku/simple-active-record": "^1.2"
   },
   "config": {
     "preferred-install": "dist"
   },
   "autoload": {
     "psr-4": {
-      "MyApp\\": ["app/classes/"]
+      "app\\models\\": ["app/models/"]
     }
   }
 

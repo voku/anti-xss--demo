@@ -1,4 +1,4 @@
-Anti-XSS (Slim + Twig + Redbean + Anti-XSS)
+Anti-XSS (Slim + Twig + ActiveRecord + Anti-XSS)
 ======================================================
 
 This is a Demo for the Anti-XSS package. 
@@ -6,7 +6,7 @@ This is a Demo for the Anti-XSS package.
 ======================================================
 
 * **Controller/Routing**: Slim ([codeguy/Slim](https://github.com/codeguy/Slim))
-* **Model/Persistence/ORM**: RedBean ([gabordemooij/redbean](https://github.com/gabordemooij/redbean))
+* **Model/Persistence/ActiveRecord**: ActiveRecord ([voku/simple-active-record](https://github.com/voku/simple-active-record))
 * **View/Template**: Twig ([fabpot/Twig](https://github.com/fabpot/Twig))
 * **Security**: Anti-XSS ([voku/anti-xss](https://github.com/voku/anti-xss))
 * **UI Toolkit**: Twitter Bootstrap ([twitter/bootstrap](https://github.com/twitter/bootstrap))
@@ -19,10 +19,6 @@ The instructions below assume you are running a **LAMP** stack in Ubuntu or any 
 	sudo a2enmod rewrite
 	sudo service apache2 restart
 
-Optionally, if you want to run this demo with the default SQLite database, you need the driver
-
-	sudo apt-get install php5-sqlite
-
 Suppose your document root is in /var/www, clone the repository as follows:
 
 	cd /var/www
@@ -32,10 +28,6 @@ The required vendor libraries can be installed/updated using [Composer](http://g
 
 	cd ./anti-xss-demo
 	composer install
-
-There are some directories should be made writeable to your web server process. 
-
-	chmod -R 777 ./app/storage
 
 Then, update your apache config file to set your document root to the **web** subdirectory. This helps to secure your scripts which should normally be put inside the **app/** folder.
 
@@ -60,7 +52,6 @@ Note that in order to make the *.htaccess* effective, your main apache config fi
 
 ##Writable Directory
 
-* **app/storage/db/** contains SQLite database file.
 * **app/storage/cache/twig/** contains the twig template cache.
 * **app/storage/logs/** contains the error logs.
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Anti-XSS-Demo (Slim + Twig + Redbean + Anti-XSS)
+ * Anti-XSS-Demo (Slim + Twig + ActiveRecord + Anti-XSS)
  *
  * @author   Lars Moelleken <lars@moelleken.org>
  */

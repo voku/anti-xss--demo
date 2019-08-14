@@ -2,16 +2,17 @@
 
 // POST / GET routes
 
+use app\models\Xss;
+
 $app->get(
-    '/', function () use ($app) {
+    '/',
+    static function () use ($app) {
+        $data['xss'] = (new Xss())->limit(0, 100)->fetchAll();
 
-  $xss = new Model_Xss();
-  $data['xss'] = $xss->getAll(false, 100);
+        if ($_GET['msg_success'] == 1) {
+            $data['msg_success'] = 'Your XSS-String was filtered, take a look ...';
+        }
 
-  if ($_GET['msg_success'] == 1) {
-    $data['msg_success'] = 'Your XSS-String was filtered, take a look ...';
-  }
-
-  $app->render('tpl_index.twig', array('page_template' => 'tpl_index', 'page_id' => 1, 'data' => $data));
-}
+        $app->render('tpl_index.twig', ['page_template' => 'tpl_index', 'page_id' => 1, 'data' => $data]);
+    }
 )->name('home');
