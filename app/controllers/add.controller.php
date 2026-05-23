@@ -1,52 +1,61 @@
 <?php
 
-// POST / GET routes
+declare(strict_types=1);
 
 use app\models\Xss;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 
 $app->post(
     '/add',
-    static function () use ($app) {
+    static function (Request $request, Response $response) use ($twig): Response {
+        $payload = $request->getParsedBody();
+        $post = [];
 
-        //
-        // XSS -> DB
-        //
+        if (\is_array($payload) && \is_array($payload['xss'] ?? null)) {
+            $post = $payload['xss'];
+        }
 
-        $data['post'] = $_POST['xss'];
-        $data['msg_error'] = false;
+        $data = [
+            'post'      => $post,
+            'msg_error' => false,
+        ];
+
         $newXss = new Xss();
+        $xssValue = \trim((string) ($post['xss'] ?? ''));
+        $authorValue = \trim((string) ($post['author'] ?? ''));
+        $captchaValue = (int) ($post['captcha'] ?? 0);
 
-        if (empty(\trim($data['post']['xss']))) {
+        if ($xssValue === '') {
             $data['error']['xss'] = ' has-error ';
-            $data['msg_error'] = 'Please try to add a XSS-String.';
+            $data['msg_error'] = 'Please try to add an XSS string.';
         }
 
-        if (empty(\trim($data['post']['author']))) {
+        if ($authorValue === '') {
             $data['error']['author'] = ' has-error ';
-            $data['msg_error'] = 'Please add a author.';
+            $data['msg_error'] = 'Please add an author.';
         }
 
-        if ((int)$data['post']['captcha'] !== 4) {
+        if ($captchaValue !== 4) {
             $data['error']['captcha'] = ' has-error ';
             $data['msg_error'] = 'Please add the correct answer.';
         }
 
         if ($data['msg_error'] === false) {
+            $newXss->xss = $xssValue;
+            $newXss->desc = (string) ($post['desc'] ?? '');
+            $newXss->keywords = (string) ($post['keywords'] ?? '');
+            $newXss->author = $authorValue;
 
-            $newXss->xss = $data['post']['xss'];
-            $newXss->desc = $data['post']['desc'];
-            $newXss->keywords = $data['post']['keywords'];
-            $newXss->author = $data['post']['author'];
-
-            $saved = $newXss->insert();
-
-            $data['msg_success'] = 'Successful added...';
-
-            if ($saved) {
-                \header('Location: /?msg_success=1');
+            if ($newXss->insert()) {
+                return $response
+                    ->withHeader('Location', '/?msg_success=1')
+                    ->withStatus(302);
             }
+
+            $data['msg_error'] = 'Saving failed, please try again.';
         }
 
-        $app->render('tpl_index.twig', ['page_template' => 'tpl_index', 'page_id' => 2, 'data' => $data]);
+        return $twig->render($response, 'tpl_index.twig', ['page_template' => 'tpl_index', 'page_id' => 2, 'data' => $data]);
     }
-)->name('add');
+);

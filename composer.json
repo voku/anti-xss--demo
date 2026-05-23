@@ -1,5 +1,6 @@
 {
   "name": "voku/anti-xss-demo",
+  "description": "Slim + Twig demo application for voku/anti-xss",
   "license": "MIT",
   "type": "project",
   "homepage": "https://github.com/voku/anti-xss-demo",
@@ -10,23 +11,21 @@
     }
   ],
   "require": {
-    "php": ">=7.0",
-    "slim/slim": "2.4.*",
-    "slim/extras": "2.0.*",
-    "slim/views": "0.1.*",
-    "twig/twig": "1.*",
-    "twig/extensions": "1.*",
-    "voku/anti-xss": "4.*",
-    "voku/simple-active-record": "1.*",
-    "voku/anti-xss-twig": "3.*"
+    "php": "^8.2",
+    "slim/slim": "^4.15",
+    "slim/psr7": "^1.8",
+    "slim/twig-view": "^3.4",
+    "twig/twig": "^3.21",
+    "voku/anti-xss": "^4.1.43",
+    "voku/simple-active-record": "^1.8"
   },
   "config": {
-    "preferred-install": "dist"
+    "preferred-install": "dist",
+    "sort-packages": true
   },
   "autoload": {
     "psr-4": {
-      "app\\models\\": ["app/models/"]
+      "app\\": "app/"
     }
   }
-
 }

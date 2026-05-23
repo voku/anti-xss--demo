@@ -1,23 +1,23 @@
 {
   "name": "anti-xss-demo",
-  "private": "true",
+  "private": true,
   "author": "Lars Moelleken",
+  "scripts": {
+    "clean": "rimraf css css-min js-min",
+    "build:css": "mkdir -p css css-min && sass --load-path=node_modules --style=expanded --no-source-map scss/app.scss css/app.css && postcss css/app.css --use autoprefixer -o css-min/app.css",
+    "build:js": "mkdir -p js-min && terser node_modules/bootstrap/dist/js/bootstrap.bundle.js js/app.js --compress --mangle -o js-min/app.js",
+    "build": "npm run build:css && npm run build:js"
+  },
   "devDependencies": {
-    "dalek-browser-chrome": "0.0.*",
-    "dalek-driver-sauce": "0.0.2",
-    "grunt": "^0.4.*",
-    "grunt-autoprefixer": "^1.0.*",
-    "grunt-contrib-clean": "^0.6.*",
-    "grunt-contrib-concat": "^0.5.*",
-    "grunt-contrib-copy": "^0.7.*",
-    "grunt-contrib-jshint": "^0.10.*",
-    "grunt-contrib-uglify": "^0.6.*",
-    "grunt-contrib-watch": "^0.6.*",
-    "grunt-csswring": "^1.*.*",
-    "grunt-dalek": "^0.2.*",
-    "grunt-sass": "^1.*",
-    "grunt-replace": "0.8.*",
-    "matchdep": "^0.3.*",
-    "time-grunt": "^1.0.*"
-  }
+    "autoprefixer": "^10.4.21",
+    "bootstrap": "^5.3.8",
+    "postcss-cli": "^11.0.1",
+    "rimraf": "^6.0.1",
+    "sass": "^1.100.0",
+    "terser": "^5.48.0"
+  },
+  "browserslist": [
+    "defaults",
+    "not dead"
+  ]
 }
