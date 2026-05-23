@@ -4,7 +4,7 @@
   "author": "Lars Moelleken",
   "scripts": {
     "clean": "rimraf css css-min js-min",
-    "build:css": "mkdir -p css css-min && sass --load-path=node_modules --style=expanded --no-source-map scss/app.scss css/app.css && postcss css/app.css --use autoprefixer -o css-min/app.css",
+    "build:css": "mkdir -p css css-min && sass --load-path=node_modules --style=expanded --no-source-map --quiet-deps scss/app.scss css/app.css && postcss css/app.css --use autoprefixer -o css-min/app.css",
     "build:js": "mkdir -p js-min && terser node_modules/bootstrap/dist/js/bootstrap.bundle.js js/app.js --compress --mangle -o js-min/app.js",
     "build": "npm run build:css && npm run build:js"
   },
