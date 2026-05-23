@@ -1,62 +1,65 @@
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', () => {
+  const navbar = document.querySelector('.main-navbar');
+  const navLinks = Array.from(document.querySelectorAll('.main-navbar .js-animate'));
+  const scrollTopLink = document.querySelector('.scroll-top a');
+  const sections = Array.from(document.querySelectorAll('#section1, #section2'));
 
-  // our main-navbar
-  var nav = $('.main-navbar');
+  const scrollToTarget = (hash) => {
+    const target = document.querySelector(hash);
 
-  // affix the navbar after scroll below header
-  nav.affix({
-    offset: {
-      top: $('header').height() - nav.height()
+    if (!target) {
+      return;
     }
-  });
 
-  // highlight the top nav as scrolling occurs
-  $('body').scrollspy({target: '.main-navbar'});
+    const offset = (navbar?.offsetHeight ?? 0) + 12;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  };
 
-  // smooth scrolling for scroll to top
-  $('.scroll-top').click(function (e) {
-    e.preventDefault();
-    $('body,html').animate({scrollTop: 0}, 1000);
-  });
-
-  // smooth scrolling for nav sections
-  $("body.tpl_index").find('.navbar-nav li>a.js-animate').click(function (e) {
-    e.preventDefault();
-    var link = $(this).attr('href');
-    var pos = $(link).offset().top - 20;
-    $('body,html').animate({scrollTop: pos}, 700);
-  });
-
-  // image-popup
-  $('.without-caption').magnificPopup({
-    type: 'image',
-    closeOnContentClick: true,
-    closeBtnInside: false,
-    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
-    image: {
-      verticalFit: true
-    },
-    zoom: {
-      enabled: true,
-      duration: 300 // don't forget to change the duration also in CSS
+  const updateActiveLink = () => {
+    if (sections.length === 0) {
+      return;
     }
-  });
 
-  $('.with-caption').magnificPopup({
-    type: 'image',
-    closeOnContentClick: true,
-    closeBtnInside: false,
-    mainClass: 'mfp-with-zoom mfp-img-mobile',
-    image: {
-      verticalFit: true,
-      titleSrc: function(item) {
-        return item.el.attr('title') + ' &middot; <a class="image-source-link" href="'+item.el.attr('data-source')+'" target="_blank">image source</a>';
+    const offset = (navbar?.offsetHeight ?? 0) + 24;
+    const currentSection = sections.reduce((activeSection, section) => {
+      if (window.scrollY + offset >= section.offsetTop) {
+        return section;
       }
-    },
-    zoom: {
-      enabled: true
-    }
+
+      return activeSection;
+    }, sections[0]);
+
+    navLinks.forEach((link) => {
+      const linkTarget = link.getAttribute('href')?.split('#')[1] ?? '';
+      link.classList.toggle('active', linkTarget === currentSection.id);
+    });
+  };
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const url = new URL(link.href, window.location.href);
+
+      if (url.pathname !== window.location.pathname || !url.hash) {
+        return;
+      }
+
+      event.preventDefault();
+      scrollToTarget(url.hash);
+      window.history.replaceState(null, '', url.hash);
+    });
   });
 
+  scrollTopLink?.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
+  window.addEventListener('scroll', updateActiveLink, { passive: true });
+  window.addEventListener('resize', updateActiveLink);
+  updateActiveLink();
+
+  if (window.location.hash) {
+    setTimeout(() => scrollToTarget(window.location.hash), 50);
+  }
 });

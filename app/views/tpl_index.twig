@@ -3,108 +3,92 @@
 {% block content %}
   <span id="section1"></span>
 
-  <br /><br />
-
-  <form id="form-xss" class="form form-xss" method="post" action="/add#section1">
-    <div class="row">
-
-      <div class="col-sm-6">
-        <div class="row form-group">
-          <div class="col-xs-6">
-            <input type="text" class="form-control {{ data.error.author }}" name="xss[author]" id="js-author" placeholder="author" required value="{% xss_clean %}{{ data.post.author }}{% end_xss_clean %}" />
+  <div class="container py-5">
+    <form id="form-xss" class="form form-xss" method="post" action="/add#section1">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="row g-3 mb-3">
+            <div class="col-sm-6">
+              <input type="text" class="form-control{{ data.error.author|default('') }}" name="xss[author]" id="js-author" placeholder="author" required value="{{ data.post.author|default('')|anti_xss }}" autocomplete="nickname">
+            </div>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="xss[keywords]" id="js-keywords" placeholder="keyword(s)" value="{{ data.post.keywords|default('')|anti_xss }}" autocomplete="off">
+            </div>
           </div>
-          <div class="col-xs-6">
-            <input type="text" class="form-control" name="xss[keywords]" id="js-keywords" placeholder="keyword(s)" value="{% xss_clean %}{{ data.post.keywords }}{% end_xss_clean %}" />
+          <div class="mb-3">
+            <textarea class="form-control" name="xss[desc]" id="js-desc" placeholder="description" rows="4">{{ data.post.desc|default('')|anti_xss }}</textarea>
           </div>
-        </div>
-        <div class="row form-group">
-          <div class="col-xs-12">
-            <textarea class="form-control" name="xss[desc]" id="js-desc" placeholder="description" >{% xss_clean %}{{ data.post.desc }}{% end_xss_clean %}</textarea>
+          <div class="mb-3">
+            <textarea class="form-control{{ data.error.xss|default('') }}" name="xss[xss]" id="js-xss" placeholder="XSS" rows="8" required>{{ data.post.xss|default('')|anti_xss }}</textarea>
           </div>
-        </div>
-        <div class="row form-group">
-          <div class="col-xs-12">
-            <textarea class="form-control {{ data.error.xss }}" name="xss[xss]" id="js-xss" placeholder="XSS" required>{% xss_clean %}{{ data.post.xss }}{% end_xss_clean %}</textarea>
+          <div class="mb-3">
+            <input type="text" class="form-control{{ data.error.captcha|default('') }}" name="xss[captcha]" id="js-captcha" placeholder="1+3=?" required value="{{ data.post.captcha|default('')|anti_xss }}" inputmode="numeric" pattern="[0-9]*">
           </div>
-        </div>
-        <div class="row form-group">
-          <div class="col-xs-12">
-            <input type="text" class="form-control {{ data.error.captcha }}" name="xss[captcha]" id="js-captcha" placeholder="1+3=?" required value="{% xss_clean %}{{ data.post.captcha }}{% end_xss_clean %}" />
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-primary" type="submit">send</button>
           </div>
         </div>
-        <div class="row form-group">
-          <div class="col-xs-12">
-            <button class="btn btn-default pull-right">send</button>
+
+        <div class="col-lg-6">
+          <div class="xss-info-box">
+            <p>
+              If you need inspiration for new attacks, take a look at the <a class="underline" target="_blank" rel="noreferrer" href="https://github.com/voku/anti-xss/tree/master/tests">PHPUnit tests</a>. The main anti-xss package already absorbs examples from projects such as <a target="_blank" rel="noreferrer" href="https://github.com/cure53/DOMPurify">DOMPurify</a>, <a target="_blank" rel="noreferrer" href="https://github.com/leizongmin/js-xss/">JS-XSS</a>, and <a target="_blank" rel="noreferrer" href="https://github.com/GrahamCampbell/Laravel-Security">Laravel Security</a>.
+            </p>
+
+            <ul>
+              <li>
+                <a target="_blank" rel="noreferrer" href="https://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/htmLawed_TESTCASE.txt">
+                  www.bioinformatics.org
+                </a>
+              </li>
+              <li>
+                <a target="_blank" rel="noreferrer" href="https://htmlpurifier.org/live/smoketests/xssAttacks.php">
+                  htmlpurifier.org
+                </a>
+              </li>
+              <li>
+                <a target="_blank" rel="noreferrer" href="https://hackingforsecurity.blogspot.com/2013/11/xss-cheat-sheet-huge-list.html">
+                  hackingforsecurity.blogspot.com
+                </a>
+              </li>
+            </ul>
+
+            <p class="mb-0">
+              PS: This demo is also available on GitHub, and pull requests are welcome <a class="underline" target="_blank" rel="noreferrer" href="https://github.com/voku/anti-xss--demo">here</a>.
+            </p>
           </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6">
-        <div class="pull-right">
-
-          <p>
-            If you need some inspiration for new attacks, take a look at the <a class="underline" target="_blank" href="https://github.com/voku/anti-xss/tree/master/tests">PHPUnit tests</a>. I have already included test from e.g. "<a target="_blank" href="https://github.com/cure53/DOMPurify">DOMPurify</a>", "<a target="_blank" href="https://github.com/leizongmin/js-xss/">JS-XSS</a>" and "<a target="_blank" href="https://github.com/GrahamCampbell/Laravel-Security">LaravelSecurity</a>". Here you can find some more XSS strings:
-            <br />
-          </p>
-
-          <ul>
-            <li>
-              <a target="_blank" href="http://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/htmLawed_TESTCASE.txt">
-                www.bioinformatics.org
-              </a>
-            </li>
-            <li>
-              <a target="_blank" href="http://htmlpurifier.org/live/smoketests/xssAttacks.php">
-                htmlpurifier.org
-              </a>
-            </li>
-            <li>
-              <a target="_blank" href="http://hackingforsecurity.blogspot.de/2013/11/xss-cheat-sheet-huge-list.html">
-                hackingforsecurity.blogspot.de
-              </a>
-            </li>
-          </ul>
-
-          <p>
-            <br /><br />
-            PS: This demo, is also available at github.com and you can also create pull-requests, <a class="underline" target="_blank" href="https://github.com/voku/anti-xss--demo">here</a>.
-            <br />
-          </p>
-
         </div>
       </div>
+    </form>
 
+    <div class="row mt-4">
+      <div class="col-12">
+        {% if data.msg_error %}
+          <p class="error">{{ data.msg_error }}</p>
+        {% endif %}
+        {% if data.msg_success %}
+          <p class="success">{{ data.msg_success }}</p>
+        {% endif %}
+      </div>
     </div>
-  </form>
 
-  <div class="row">
-    <div class="col-sm-12">
-      {% if data.msg_error %}
-        <p class="error">{{ data.msg_error }}</p>
-      {% endif %}
-      {% if data.msg_success %}
-        <p class="success">{{ data.msg_success }}</p>
-      {% endif %}
-    </div>
+    {% if data.xss %}
+      <div class="row mt-4">
+        <span id="section2"></span>
+
+        {% for xss in data.xss %}
+          <div class="col-12">
+            <hr>
+            <p>Result with AntiXSS:</p>
+            <code class="break-word d-block">{{ xss.xss|anti_xss }}</code>
+            <p class="mt-3">Result with Twig escaping:</p>
+            <code class="break-word d-block">{{ xss.xss|escape }}</code>
+            <p>keyword(s): {{ xss.keywords|anti_xss }}</p>
+            <p>description: {{ xss.desc|anti_xss }}</p>
+            <p>by {{ xss.author|anti_xss }} | at {{ xss.date }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
   </div>
-
-  {% if data.xss %}
-    <div class="row">
-      <span id="section2"></span>
-
-      {% for xss in data.xss %}
-        <div class="col-sm-12">
-          <hr />
-          <p>result with twig: &#x7B;&#x25;&#x20;&#x78;&#x73;&#x73;&#x5F;&#x63;&#x6C;&#x65;&#x61;&#x6E;&#x20;&#x25;&#x7D;&#x7B;&#x7B;&#x20;&#x78;&#x73;&#x73;&#x2E;&#x78;&#x73;&#x73;&#x20;&#x7C;&#x20;&#x72;&#x61;&#x77;&#x20;&#x7D;&#x7D;&#x7B;&#x25;&#x20;&#x65;&#x6E;&#x64;&#x5F;&#x78;&#x73;&#x73;&#x5F;&#x63;&#x6C;&#x65;&#x61;&#x6E;&#x20;&#x25;&#x7D;:</p>
-          <code class="break-word">{% xss_clean %}{{ xss.xss | raw }}{% end_xss_clean %}</code>
-          <p>result with twig: &#x7B;&#x7B;&#x20;&#x78;&#x73;&#x73;&#x2E;&#x78;&#x73;&#x73;&#x20;&#x7C;&#x20;&#x65;&#x73;&#x63;&#x61;&#x70;&#x65;&#x20;&#x7D;&#x7D;:</p>
-          <code class="break-word">{{ xss.xss | escape }}</code>
-          <p>keyword(s): {% xss_clean %}{{ xss.keywords }}{% end_xss_clean %}</p>
-          <p>description: {% xss_clean %}{{ xss.desc }}{% end_xss_clean %}</p>
-          <p>by {% xss_clean %}{{ xss.author }}{% end_xss_clean %} | at {{ xss.date }}</p>
-        </div>
-      {% endfor %}
-
-    </div>
-  {% endif %}
 {% endblock %}

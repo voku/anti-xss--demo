@@ -1,6 +1,7 @@
 // fonts
 $font-family-default: arial, sans-serif;
 $font-family-special: 'Open Sans';
+$font-family-sans-serif: $font-family-default;
 
 // colors
 $color_white: white;
@@ -18,18 +19,13 @@ $color_japanese_laurel_approx: #aee868;
 $color_persimmon_approx: #ffa500;
 $color_sunglow_approx: #ffcf44;
 
-// overwrites for bootstrap
-
-// Brand colors
-// -------------------------
-
-$brand-primary: $color_blackblue;
-$brand-success: $color_japanese_laurel_approx;
-$brand-warning: $color_persimmon_approx;
-$brand-danger: $color_persimmon_approx;
-$brand-info: $color_blue_cool;
-
-// Navbar links
-// -------------------------
-
-$navbar-inverse-link-color: $color_white;
+// bootstrap overrides
+$primary: $color_blackblue;
+$success: $color_japanese_laurel_approx;
+$warning: $color_persimmon_approx;
+$danger: $color_persimmon_approx;
+$info: $color_blue_cool;
+$navbar-dark-color: $color_white;
+$navbar-dark-hover-color: $color_white;
+$navbar-dark-active-color: $color_white;
+$navbar-dark-brand-color: $color_white;
